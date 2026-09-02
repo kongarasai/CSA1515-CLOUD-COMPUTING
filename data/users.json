@@ -1,0 +1,22 @@
+[
+  {
+    "id": "u-admin-01",
+    "name": "Alex Rivera (Cloud Admin)",
+    "email": "admin@cloudvault.io",
+    "password": "$2a$10$c8NC4BBuiLiWCizNrAAKse.TtxyA2piW8FmHCYc/bp0PCGAqoV4Hu",
+    "role": "Admin",
+    "quotaBytes": 53687091200,
+    "usedBytes": 0,
+    "createdAt": "2026-09-02T02:51:31.431Z"
+  },
+  {
+    "id": "u-user-01",
+    "name": "Sarah Chen (Dev Lead)",
+    "email": "sarah@cloudvault.io",
+    "password": "$2a$10$GWkwG99d/dtz406me/KhCOOQUw0AtvIfNKdIxVCszlndU4mIRbI56",
+    "role": "Editor",
+    "quotaBytes": 16106127360,
+    "usedBytes": 0,
+    "createdAt": "2026-09-02T02:51:31.432Z"
+  }
+]

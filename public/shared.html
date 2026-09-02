@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CloudVault | Public Shared Asset Access</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body style="display: flex; align-items: center; justify-content: center; min-height: 100vh;">
+  <div class="auth-card" style="max-width: 480px; width: 90%;">
+    <div class="brand" style="justify-content: center; margin-bottom: 24px;">
+      <div class="brand-icon"><i class="ri-cloud-fill"></i></div>
+      <div class="brand-name">CloudVault Shared Portal</div>
+    </div>
+
+    <div id="sharedLoading" style="text-align: center; padding: 20px;">
+      <i class="ri-loader-4-line ri-spin" style="font-size: 32px; color: var(--primary);"></i>
+      <p style="margin-top: 8px; color: var(--text-muted);">Verifying secure access link...</p>
+    </div>
+
+    <div id="sharedError" style="display: none; text-align: center; color: var(--accent-rose); padding: 12px; font-size: 14px;"></div>
+
+    <div id="passwordArea" style="display: none;">
+      <div style="font-size: 14px; text-align: center; margin-bottom: 16px; color: var(--text-muted);">
+        <i class="ri-lock-2-line" style="color: var(--accent-amber); font-size: 24px; display: block; margin-bottom: 6px;"></i>
+        This shared cloud file is password protected. Enter password to access payload.
+      </div>
+      <form id="passForm">
+        <div class="form-group">
+          <input type="password" id="sharePassInput" class="form-control" placeholder="Enter share password" required />
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;"><i class="ri-key-2-line"></i> Unlock & Download</button>
+      </form>
+    </div>
+
+    <div id="sharedDetails" style="display: none; text-align: center;">
+      <div class="stat-icon cyan" style="margin: 0 auto 16px auto; width: 64px; height: 64px; font-size: 32px;">
+        <i class="ri-file-download-line"></i>
+      </div>
+      <h3 id="fileName" style="font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 6px;"></h3>
+      <p id="fileSub" style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;"></p>
+      
+      <button class="btn btn-primary" id="btnDownloadPublic" style="width: 100%; justify-content: center; padding: 12px;">
+        <i class="ri-download-cloud-2-line"></i> Download Decrypted File
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+
+    if (!token) {
+      document.getElementById('sharedLoading').style.display = 'none';
+      document.getElementById('sharedError').textContent = 'Invalid link. Missing share token.';
+      document.getElementById('sharedError').style.display = 'block';
+    } else {
+      verifyToken();
+    }
+
+    async function verifyToken(password = null) {
+      document.getElementById('sharedLoading').style.display = 'block';
+      document.getElementById('sharedError').style.display = 'none';
+      document.getElementById('passwordArea').style.display = 'none';
+      document.getElementById('sharedDetails').style.display = 'none';
+
+      try {
+        const res = await fetch('/api/shares/access', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token, password })
+        });
+        const data = await res.json();
+
+        document.getElementById('sharedLoading').style.display = 'none';
+
+        if (!res.ok) {
+          if (data.passwordRequired) {
+            document.getElementById('passwordArea').style.display = 'block';
+          } else {
+            document.getElementById('sharedError').textContent = data.error || 'Access denied';
+            document.getElementById('sharedError').style.display = 'block';
+          }
+          return;
+        }
+
+        // Access Granted
+        document.getElementById('fileName').textContent = data.file.name;
+        document.getElementById('fileSub').textContent = `Shared by ${data.file.ownerName} • Size: ${(data.file.size/1024).toFixed(1)} KB`;
+        document.getElementById('sharedDetails').style.display = 'block';
+
+        document.getElementById('btnDownloadPublic').onclick = () => {
+          let downloadUrl = `/api/shares/download/${token}`;
+          if (password) downloadUrl += `?password=${encodeURIComponent(password)}`;
+          window.location.href = downloadUrl;
+        };
+
+      } catch (err) {
+        document.getElementById('sharedLoading').style.display = 'none';
+        document.getElementById('sharedError').textContent = err.message;
+        document.getElementById('sharedError').style.display = 'block';
+      }
+    }
+
+    document.getElementById('passForm').onsubmit = (e) => {
+      e.preventDefault();
+      const pass = document.getElementById('sharePassInput').value;
+      verifyToken(pass);
+    };
+  </script>
+</body>
+</html>

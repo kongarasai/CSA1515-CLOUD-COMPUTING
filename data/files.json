@@ -1,0 +1,62 @@
+[
+  {
+    "id": "file-doc-01",
+    "name": "Cloud_Architecture_Specification.md",
+    "originalName": "Cloud_Architecture_Specification.md",
+    "mimeType": "text/markdown",
+    "size": 4250,
+    "ownerId": "u-user-01",
+    "ownerName": "Sarah Chen",
+    "encryptedFileName": "sample_arch_spec.enc",
+    "sha256": "7b0f3e08a7a29d4a8cf449933ebd6cf9030b51f49221e89e7630986c6b5ca91e",
+    "tags": [
+      "Architecture",
+      "Cloud",
+      "Design"
+    ],
+    "versions": [
+      {
+        "version": 1,
+        "createdAt": "2026-09-02T02:51:31.473Z",
+        "size": 4250,
+        "note": "Initial draft upload"
+      }
+    ],
+    "downloadsCount": 12,
+    "isShared": true,
+    "sharedWith": [
+      "u-admin-01"
+    ],
+    "createdAt": "2026-09-02T02:51:31.473Z",
+    "updatedAt": "2026-09-02T02:51:31.473Z"
+  },
+  {
+    "id": "file-code-02",
+    "name": "auth_middleware.js",
+    "originalName": "auth_middleware.js",
+    "mimeType": "application/javascript",
+    "size": 2180,
+    "ownerId": "u-user-01",
+    "ownerName": "Sarah Chen",
+    "encryptedFileName": "sample_auth.enc",
+    "sha256": "e471d71c37d1233e04326c48db54a122fc9c7b564028a3358b2486d6d49d2b86",
+    "tags": [
+      "Security",
+      "Backend",
+      "JWT"
+    ],
+    "versions": [
+      {
+        "version": 1,
+        "createdAt": "2026-09-02T02:51:31.473Z",
+        "size": 2180,
+        "note": "Added JWT validation"
+      }
+    ],
+    "downloadsCount": 8,
+    "isShared": false,
+    "sharedWith": [],
+    "createdAt": "2026-09-02T02:51:31.473Z",
+    "updatedAt": "2026-09-02T02:51:31.473Z"
+  }
+]

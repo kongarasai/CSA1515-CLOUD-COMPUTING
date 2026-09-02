@@ -1,0 +1,29 @@
+[
+  {
+    "id": "035721f9-3d80-4ab1-96ef-3b6dfe493606",
+    "userId": "u-admin-01",
+    "userEmail": "admin@cloudvault.io",
+    "action": "LOGIN_SUCCESS",
+    "details": "User logged in successfully",
+    "ip": "127.0.0.1",
+    "timestamp": "2026-09-02T02:54:56.497Z"
+  },
+  {
+    "id": "0dc4cb2e-39a9-4692-8b68-a97ea2b69cba",
+    "userId": "u-admin-01",
+    "userEmail": "admin@cloudvault.io",
+    "action": "LOGIN_SUCCESS",
+    "details": "User logged in successfully",
+    "ip": "127.0.0.1",
+    "timestamp": "2026-09-02T02:52:02.429Z"
+  },
+  {
+    "id": "2eb2ca76-8558-4121-932f-fc0d7de9b305",
+    "userId": "system",
+    "userEmail": "System Init",
+    "action": "SEED_USERS",
+    "details": "Initialized default admin & demo user accounts.",
+    "ip": "127.0.0.1",
+    "timestamp": "2026-09-02T02:51:31.448Z"
+  }
+]

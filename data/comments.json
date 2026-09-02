@@ -1,0 +1,10 @@
+[
+  {
+    "id": "c-01",
+    "fileId": "file-doc-01",
+    "userId": "u-admin-01",
+    "userName": "Alex Rivera",
+    "content": "Please verify the AES-256 cipher implementation details in section 2.",
+    "createdAt": "2026-09-02T02:51:31.492Z"
+  }
+]
